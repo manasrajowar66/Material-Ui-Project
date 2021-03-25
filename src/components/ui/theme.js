@@ -17,9 +17,18 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    h3: {
-      fontWeight: 300,
+    tab: {
+      fontFamily: "Raleway",
+      textTransform: "none",
+      fontWeight: 600,
+      fontSize: "0.9rem",
     },
+    estimate:{
+      fontFamily:'Pacifico',
+      textTransform:'none',
+      color:'#fff',
+      fontSize:'1rem'
+    }
   },
 });
 
