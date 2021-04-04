@@ -4,6 +4,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import theme from "./ui/theme";
 import {Switch,BrowserRouter as Router,Route} from 'react-router-dom';
 import Footer from "./ui/footer/Footer";
+import LandingPage from "./ui/LandingPage";
 
 
 const App = () => {
@@ -12,9 +13,14 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Header activeTab={activeTab} setTab={setTab} selectedIndex={selectedIndex} setIndex={setIndex} />
+        <Header
+          activeTab={activeTab}
+          setTab={setTab}
+          selectedIndex={selectedIndex}
+          setIndex={setIndex}
+        />
         <Switch>
-          <Route path="/" exact component={() => <div style={{height:'1220px'}}>Home</div>} />
+          <Route path="/" exact component={LandingPage} />
           <Route path="/services" exact component={() => <div>Services</div>} />
           <Route
             path="/revolution"
@@ -43,7 +49,12 @@ const App = () => {
             component={() => <div>Website Development</div>}
           />
         </Switch>
-        <Footer activeTab={activeTab} setTab={setTab} selectedIndex={selectedIndex} setIndex={setIndex} />
+        <Footer
+          activeTab={activeTab}
+          setTab={setTab}
+          selectedIndex={selectedIndex}
+          setIndex={setIndex}
+        />
       </Router>
     </ThemeProvider>
   );

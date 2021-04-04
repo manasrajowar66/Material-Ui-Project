@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     height: "38px",
     backgroundColor: theme.palette.secondary.main,
     borderRadius: "50px",
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.light,
+    },
   },
   menu: {
     backgroundColor: theme.palette.common.blue,
@@ -67,7 +70,7 @@ export const TabsUtils = ({
   const menuOption = [
     { name: "Services", path: "/services" },
     { name: "Custom Software", path: "/customsoftware" },
-    { name: "Mobile App Development", path: "/mobileapps" },
+    { name: "iOS/Android App Development", path: "/mobileapps" },
     { name: "Web Development", path: "/webapps" },
   ];
   return (
