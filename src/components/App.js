@@ -5,6 +5,9 @@ import theme from "./ui/theme";
 import {Switch,BrowserRouter as Router,Route} from 'react-router-dom';
 import Footer from "./ui/footer/Footer";
 import LandingPage from "./ui/LandingPage";
+import Services from './ui/Services';
+import Android from './ui/Android';
+import CustomSoftware from './ui/CustomSoftware';
 
 
 const App = () => {
@@ -20,8 +23,12 @@ const App = () => {
           setIndex={setIndex}
         />
         <Switch>
-          <Route path="/" exact component={LandingPage} />
-          <Route path="/services" exact component={() => <div>Services</div>} />
+          <Route path="/" exact render={(props) => (
+              <LandingPage {...props} setTab={setTab} setIndex={setIndex}  />
+            )}/>
+          <Route path="/services" exact render={(props) => (
+              <Services {...props} setTab={setTab} setIndex={setIndex}  />
+            )} />
           <Route
             path="/revolution"
             exact
@@ -36,18 +43,23 @@ const App = () => {
           <Route
             path="/customsoftware"
             exact
-            component={() => <div>Custom Software</div>}
+            render={(props) => (
+              <CustomSoftware {...props} setTab={setTab} setIndex={setIndex}  />
+            )}
           />
           <Route
             path="/mobileapps"
             exact
-            component={() => <div>Mobile Apps Development</div>}
+            render={(props) => (
+              <Android {...props} setTab={setTab} setIndex={setIndex}  />
+            )}
           />
           <Route
             path="/webapps"
             exact
             component={() => <div>Website Development</div>}
           />
+          <Route path="/estimate" exact component={() => <div>Estimate</div>} />
         </Switch>
         <Footer
           activeTab={activeTab}

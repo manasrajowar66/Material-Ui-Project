@@ -24,13 +24,13 @@ const theme = createMuiTheme({
       fontWeight: 600,
       fontSize: "0.9rem",
     },
-    estimate:{
-      fontFamily:'Pacifico',
-      textTransform:'none',
-      color:'#fff',
-      fontSize:'1rem'
+    estimate: {
+      fontFamily: "Pacifico",
+      textTransform: "none",
+      color: "#fff",
+      fontSize: "1rem",
     },
-    learnButton:{
+    learnButton: {
       borderColor: devBlue,
       color: devBlue,
       fontFamily: "Roboto",
@@ -38,25 +38,46 @@ const theme = createMuiTheme({
       borderWidth: 2,
       fontWeight: "bold",
     },
-    h2:{
-      fontFamily:'Raleway',
-      fontWeight:700,
-      fontSize:'2.5rem',
-      lineHeight:1.5,
-      color:devBlue
+    h2: {
+      fontFamily: "Raleway",
+      fontWeight: 700,
+      fontSize: "2.5rem",
+      lineHeight: 1.5,
+      color: devBlue,
+    },
+    h3: {
+      fontFamily: "Pacifico",
+      fontSize: "2.5em",
+      color: devBlue,
+    },
+    h4: {
+      fontFamily: "Raleway",
+      fontSize: "1.75rem",
+      color: devBlue,
+      fontWeight: 700,
+    },
+    h5:{
+      fontFamily: "Raleway",
+      fontSize: "1.75rem",
+      color: '#fff',
+      fontWeight: 700,
+    },
+    body1:{
+      fontSize:'1.25rem',
+      color:devGrey,
+      fontWeight:300
+    },
+    subtitle1: {
+      color: devGrey,
+      fontSize: "1.25rem",
+      fontWeight: 300,
+    },
+    subtitle2: {
+      color: 'white',
+      fontSize: "1.25rem",
+      fontWeight: 300,
+    },
   },
-  h4:{
-    fontFamily:'Raleway',
-    fontSize:'1.75rem',
-    color:devBlue,
-    fontWeight:700
-  },
-  subtitle1:{
-    color:devGrey,
-    fontSize:'1.25rem',
-    fontWeight:300
-  }
-}
 });
 
 export default theme;

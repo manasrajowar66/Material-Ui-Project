@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuItem: {
     ...theme.typography.tab,
+    color: "#fff",
     opacity: 0.7,
     "&:hover": {
       opacity: 1,
@@ -110,7 +111,13 @@ export const TabsUtils = ({
           to="/contact-us"
         />
       </Tabs>
-      <Button variant="contained" className={classes.tabButton}>
+      <Button
+        component={Link}
+        to="/estimate"
+        variant="contained"
+        onClick={() => setTab(5)}
+        className={classes.tabButton}
+      >
         Free Estimate
       </Button>
       <Menu

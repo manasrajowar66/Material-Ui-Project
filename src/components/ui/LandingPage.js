@@ -1,4 +1,4 @@
-import { Button, Grid, Typography, useMediaQuery } from "@material-ui/core";
+import { Button, Card, CardContent, Grid, Typography, useMediaQuery } from "@material-ui/core";
 import React from "react";
 import Lottie from "react-lottie";
 import animationData from "../../animations/landinganimation/data";
@@ -7,6 +7,10 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import customSoftwareSvg from "../../assets/Custom Software Icon.svg";
 import mobileAppIcon from "../../assets/mobileIcon.svg";
 import websiteIcon from "../../assets/websiteIcon.svg";
+import revolutonBackgroundSvg from '../../assets/repeatingBackground.svg';
+import informationBackgroundSvg from '../../assets/infoBackground.svg';
+import CallToAction from './CallToAction';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   icons: {
@@ -41,12 +45,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.9rem",
   },
   mainContainer: {
-    marginBottom: "20px",
+   
   },
   heroTextContainer: {
     minWidth: "21.5rem",
     marginLeft: "1rem",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       marginLeft: 0,
     },
   },
@@ -84,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       marginTop: "8rem",
-      padding: 25,
+      // padding: 25,
     },
   },
   icon: {
@@ -93,9 +97,36 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
+  revolutonBackground:{
+    backgroundImage:`url(${revolutonBackgroundSvg})`,
+    height:'100%',
+    width:'100%',
+    backgroundPosition:'center',
+    backgroundRepeat:'no-repeat',
+    backgroundSize:'cover'
+  },
+  revolutionCard:{
+    position:'absolute',
+    boxShadow:theme.shadows[10],
+    borderRadius:'15px',
+    padding:'10em',
+    [theme.breakpoints.down('sm')]:{
+      padding:'8em 0 8em 0',
+      borderRadius:0,
+      width:'100%'
+    }
+  },
+  informationBackground:{
+    backgroundImage:`url(${informationBackgroundSvg})`,
+    height:'80em',
+    width:'100%',
+    backgroundPosition:'top',
+    backgroundSize:'cover',
+    backgroundRepeat:'no-repeat',
+  },
 }));
 
-const LandingPage = () => {
+const LandingPage = ({setTab,setIndex}) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -107,7 +138,8 @@ const LandingPage = () => {
 
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchXs = useMediaQuery(theme.breakpoints.down("xs"));
   return (
     <>
       <Grid container direction="column" className={classes.mainContainer}>
@@ -116,12 +148,12 @@ const LandingPage = () => {
           <Grid
             container
             alignItems="center"
-            justify={`${matches ? "center" : "flex-end"}`}
+            justify={`${matchSm ? "center" : "flex-end"}`}
             direction="row"
             className={classes.heroContainer}
           >
             <Grid item sm className={classes.heroTextContainer}>
-              <Grid container justify={`${matches ? "center" : "flex-end"}`}>
+              <Grid container justify={`${matchSm ? "center" : "flex-end"}`}>
                 <Grid item>
                   <Grid container direction="column" spacing={1}>
                     <Grid item>
@@ -140,6 +172,9 @@ const LandingPage = () => {
                           <Button
                             variant="contained"
                             className={classes.estimateButton}
+                            component={Link}
+                            to='/estimate'
+                            onClick={()=>setTab(5)}
                           >
                             Free Estimate
                           </Button>
@@ -148,6 +183,9 @@ const LandingPage = () => {
                           <Button
                             variant="outlined"
                             className={classes.learnButtonHero}
+                            component={Link}
+                            to='/revolution'
+                            onClick={()=>setTab(2)}
                           >
                             Learn More{" "}
                             <ArrowForwardIcon className={classes.icons} />
@@ -173,13 +211,13 @@ const LandingPage = () => {
             container
             direction="row"
             className={classes.sevicesContainer}
-            justify={matches ? "center" : undefined}
+            justify={matchSm ? "center" : undefined}
           >
             <Grid
               item
               style={{
-                marginLeft: matches ? 0 : "5rem",
-                textAlign: matches ? "center" : undefined,
+                marginLeft: matchSm ? 0 : "5rem",
+                textAlign: matchSm ? "center" : undefined,
               }}
             >
               <Typography variant="h4">Custom Software Development</Typography>
@@ -190,7 +228,8 @@ const LandingPage = () => {
                 Complete digital solutions, from investigation to{" "}
                 <span className={classes.specialText}>celebration.</span>
               </Typography>
-              <Button variant="outlined" className={classes.learnButton}>
+              <Button component={Link}
+                            to='/customsoftware' onClick={()=>{setTab(1);setIndex(1)}} variant="outlined" className={classes.learnButton}>
                 Learn More <ArrowForwardIcon className={classes.icons} />
               </Button>
             </Grid>
@@ -208,23 +247,24 @@ const LandingPage = () => {
             direction="row"
             style={{ marginTop: "8rem" }}
             // className={classes.sevicesContainer}
-            justify={matches ? "center" : "flex-end"}
+            justify={matchSm ? "center" : "flex-end"}
           >
-            <Grid item style={{ textAlign: matches ? "center" : undefined }}>
+            <Grid item style={{ textAlign: matchSm ? "center" : undefined }}>
               <Typography variant="h4">iOS/Andriod Development</Typography>
               <Typography variant="subtitle1" className={classes.subttitle}>
                 Extend Functionality. Extend Access. Increase Engagement.
               </Typography>
               <Typography variant="subtitle1">
                 Integrate your web experience or create a standalone app{" "}
-                {matches ? null : <br />}
+                {matchSm ? null : <br />}
                 with either mobile platform.
               </Typography>
-              <Button variant="outlined" className={classes.learnButton}>
+              <Button component={Link}
+                            to='/mobileapps' onClick={()=>{setTab(1);setIndex(2)}} variant="outlined" className={classes.learnButton}>
                 Learn More <ArrowForwardIcon className={classes.icons} />
               </Button>
             </Grid>
-            <Grid item style={{ marginRight: matches ? 0 : "5rem" }}>
+            <Grid item style={{ marginRight: matchSm ? 0 : "5rem" }}>
               <img alt="" className={classes.icon} src={mobileAppIcon} />
             </Grid>
           </Grid>
@@ -238,13 +278,13 @@ const LandingPage = () => {
             direction="row"
             style={{ marginTop: "8rem" }}
             // className={classes.sevicesContainer}
-            justify={matches ? "center" : undefined}
+            justify={matchSm ? "center" : undefined}
           >
             <Grid
               item
               style={{
-                marginLeft: matches ? 0 : "5rem",
-                textAlign: matches ? "center" : undefined,
+                marginLeft: matchSm ? 0 : "5rem",
+                textAlign: matchSm ? "center" : undefined,
               }}
             >
               <Typography variant="h4">Website Development</Typography>
@@ -254,7 +294,8 @@ const LandingPage = () => {
               <Typography variant="subtitle1">
                 Optimized for Search Engines, built for speed.
               </Typography>
-              <Button variant="outlined" className={classes.learnButton}>
+              <Button component={Link}
+                            to='/webapps' onClick={()=>{setTab(1);setIndex(3)}} variant="outlined" className={classes.learnButton}>
                 Learn More <ArrowForwardIcon className={classes.icons} />
               </Button>
             </Grid>
@@ -264,6 +305,92 @@ const LandingPage = () => {
           </Grid>
         </Grid>
         {/* -----Website Block End---- */}
+ 
+        {/* -----Revolution Block---- */}
+        <Grid item>
+        <Grid container justify='center' alignItems='center' style={{height:'100em',marginTop:'12em'}}>
+           <Card className={classes.revolutionCard}>
+             <CardContent>
+               <Grid container direction='column' style={{textAlign:'center'}} >
+               <Grid item>
+                 <Typography variant='h3' gutterBottom>The Revolution</Typography>
+               </Grid>
+                <Grid item>
+                  <Typography variant='subtitle1'>Visionary insights coupled with cutting-edge technology is a recipe for revolution.</Typography>
+                  <Button
+                  variant="outlined"
+                  className={classes.learnButtonHero}
+                  component={Link}
+                  to='/revolution' onClick={()=>{setTab(2)}}
+                  >
+                  Learn More{" "}
+                  <ArrowForwardIcon className={classes.icons} />
+                 </Button>
+                </Grid>
+               </Grid>
+             </CardContent>
+           </Card>
+           <div className={classes.revolutonBackground}/>
+        </Grid>
+        </Grid>
+        {/* -----Revolution Block End---- */}
+
+        {/* -----Information Block---- */}
+        <Grid item >
+        <Grid container alignItems='center'className={classes.informationBackground} >
+        <Grid item container style={{margin:0}} direction={matchXs?'column':'row'}  justify='space-between'
+        spacing={matchXs?10:0}
+        >
+        <Grid item  style={{marginLeft:matchXs?0:matchSm?'2em':'5em'}} >
+          <Grid container direction='column' style={{textAlign:matchXs?'center':'left'}}>
+            <Grid item>
+              <Typography variant='h2' style={{color:'white'}}>About Us</Typography>
+              </Grid>
+              <Grid item>
+            <Typography variant='subtitle2'>Let's get personal</Typography>
+            </Grid>
+            <Grid item>
+            <Button variant="outlined" style={{color:'white',borderColor:'white'}} className={classes.learnButton}
+            component={Link}
+            to='/about' onClick={()=>{setTab(3)}}
+            >
+                Learn More <ArrowForwardIcon className={classes.icons} />
+              </Button>
+              </Grid>
+          </Grid>
+
+          </Grid>
+          <Grid item  style={{marginRight:matchXs?0:matchSm?'2em':'5em'}}>
+          <Grid container direction='column' style={{textAlign:matchXs?'center':'right'}}>
+            <Grid item>
+              <Typography variant='h2' style={{color:'white'}}>Contact Us</Typography>
+            </Grid>
+            <Grid item>
+            <Typography variant='subtitle2'>Say Hello👋</Typography>
+            </Grid>
+            <Grid item>
+            <Button variant="outlined" style={{color:'white',borderColor:'white'}} className={classes.learnButton}
+            component={Link}
+            to='/contact-us' onClick={()=>{setTab(4)}}
+            >
+                Learn More <ArrowForwardIcon className={classes.icons} />
+              </Button>
+            </Grid>
+          </Grid>
+          </Grid>
+        </Grid>
+          
+        </Grid>
+
+        </Grid>
+        
+        {/* -----Information Block End---- */}
+
+        {/* -----Call To Action Block----- */}
+        <Grid item>
+          <CallToAction setTab={setTab} setIndex={setIndex}/>
+        </Grid>
+        {/* -----Call To Action Block End----- */}
       </Grid>
     </>
   );

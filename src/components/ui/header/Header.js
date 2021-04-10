@@ -96,7 +96,7 @@ const Header = ({ activeTab, setTab, selectedIndex, setIndex }) => {
       case "/webapps":
         if (activeTab !== 1) {
           setTab(1);
-          setIndex(1);
+          setIndex(3);
         }
         break;
       case "/revolution":

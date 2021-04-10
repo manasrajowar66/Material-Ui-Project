@@ -212,8 +212,9 @@ const DrawerUtils = ({ setOpenDrawer, setTab, activeTab, openDrawer }) => {
         onClick={() => setOpenDrawer(!openDrawer)}
         disableRipple
         className={classes.drawerIconContainer}
+        
       >
-        <MenuIcon className={classes.drawerIcon}></MenuIcon>
+        <MenuIcon  className={classes.drawerIcon}></MenuIcon>
       </IconButton>
     </>
   );
