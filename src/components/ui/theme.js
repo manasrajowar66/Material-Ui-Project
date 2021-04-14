@@ -56,28 +56,56 @@ const theme = createMuiTheme({
       color: devBlue,
       fontWeight: 700,
     },
-    h5:{
+    h5: {
       fontFamily: "Raleway",
       fontSize: "1.75rem",
-      color: '#fff',
+      color: "#fff",
       fontWeight: 700,
     },
-    body1:{
-      fontSize:'1.25rem',
-      color:devGrey,
-      fontWeight:300
+    body1: {
+      fontSize: "1.1rem",
+      color: devGrey,
+      fontWeight: 300,
     },
     subtitle1: {
       color: devGrey,
-      fontSize: "1.25rem",
+      fontSize: "1.1rem",
       fontWeight: 300,
     },
     subtitle2: {
-      color: 'white',
-      fontSize: "1.25rem",
+      color: "white",
+      fontSize: "1.1rem",
       fontWeight: 300,
     },
+    caption : {
+      color: devGrey,
+      fontSize:'0.6rem'
+    },
+    
   },
+  overrides:{
+    MuiInputLabel:{
+      root:{
+        color:devBlue,
+        fontSize:'1rem' ,
+      },
+    },
+    MuiInput:{
+      underline:{
+        '&:before':{
+          borderBottom:`2px solid ${devBlue}` 
+        },
+        '&:hover:not($disabled):not($focused):not($error):before':{
+          borderBottom:`2px solid ${devBlue}`
+        },
+        
+      },
+      root:{
+        // color:devGrey,
+        fontWeight:300
+      }
+    }
+  }
 });
 
 export default theme;
