@@ -6,13 +6,16 @@ import {
   useMediaQuery,
   Dialog,
   DialogContent,
+  CircularProgress,
 } from "@material-ui/core";
+import Snackbar from '@material-ui/core/Snackbar';
 import React, { useState } from "react";
 import { useTheme, makeStyles } from "@material-ui/styles";
 import CallToAction from "./CallToAction";
 import phone from "../../../assets/phone.svg";
 import email from "../../../assets/email.svg";
 import send from "../../../assets/send.svg";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   sendButton: {
@@ -48,6 +51,8 @@ const ContactUs = ({ setTab, setIndex }) => {
     phone: "",
   });
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [alert,setAlert] = useState({open:false,message:'',backgroundColor:''});
   const onClose = () => {
     setOpen(false);
   };
@@ -78,7 +83,30 @@ const ContactUs = ({ setTab, setIndex }) => {
       default:
         break;
     }
-  };
+  }; 
+   const onConfirm = async () => {
+     setLoading(true);
+     try {
+       const config = {
+         headers: {
+           "Content-Type": "application/json",
+         },
+       };
+       await axios.post("/send-message", state, config);
+       setLoading(false);
+       setState({
+         name:"",
+         email:"",
+         message:"",
+         phone:""
+       });
+       setOpen(!open);
+       setAlert({open:true,message:"Message send successfully!",backgroundColor:theme.palette.success.main});
+     } catch (error) {
+      setLoading(false);
+      setAlert({open:true,message:"Something went wrong,please try again!",backgroundColor:theme.palette.error.main});
+     }
+   };
   return (
     <>
       <Grid container style={{ marginTop: matchMd ? 0 : "-1.2em" }}>
@@ -213,7 +241,8 @@ const ContactUs = ({ setTab, setIndex }) => {
                 }}
               >
                 Send Massage
-                <img src={send} alt="send" />
+                    <img src={send} alt="send" />
+                
               </Button>
             </Grid>
           </Grid>
@@ -331,12 +360,15 @@ const ContactUs = ({ setTab, setIndex }) => {
                       }
                       variant="contained"
                       className={classes.sendButton}
-                      onClick={() => {
-                        setOpen(!open);
-                      }}
+                      onClick={onConfirm}
                     >
-                      Send Massage
-                      <img src={send} alt="send" />
+                      {loading ? 
+                      <CircularProgress size={30}/>:
+                     <>
+                       Send Massage
+                       <img src={send} alt="send" />
+                     </>
+                     }
                     </Button>
                   </Grid>
                 </Grid>
@@ -349,6 +381,9 @@ const ContactUs = ({ setTab, setIndex }) => {
           <CallToAction setTab={setTab} setIndex={setIndex} />
         </Grid>
       </Grid>
+      <Snackbar open={alert.open} message={alert.message} ContentProps={{style:{backgroundColor:alert.backgroundColor}}}
+      anchorOrigin={{vertical:"top",horizontal:"center"}} 
+       autoHideDuration={4000} onClose={()=>{setAlert({...alert,open:false})}}/>
     </>
   );
 };
