@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, Tab, Tabs } from "@material-ui/core";
+import { Menu, MenuItem, Tab, Tabs } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.secondary.light,
     },
+    zIndex:  1302,
+    opacity:  1,
   },
   menu: {
     backgroundColor: theme.palette.common.blue,
@@ -110,16 +112,23 @@ export const TabsUtils = ({
           component={Link}
           to="/contact-us"
         />
+        <Tab
+          component={Link}
+          to="/estimate"
+          label="Free Estimate"
+          onClick={() => setTab(5)}
+          className={classes.tabButton}
+        />
       </Tabs>
-      <Button
+      {/* <Button
         component={Link}
         to="/estimate"
         variant="contained"
-        onClick={() => setTab(5)}
+        onClick={() => setTab(null)}
         className={classes.tabButton}
       >
         Free Estimate
-      </Button>
+      </Button> */}
       <Menu
         id="simple-menu"
         open={Boolean(anchorEl)}

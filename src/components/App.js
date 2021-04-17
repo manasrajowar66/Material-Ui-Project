@@ -12,6 +12,7 @@ import WebsiteDevelopment from "./ui/WebsiteDevelopment";
 import Revolution from "./ui/revolution/Revolution";
 import About from './ui/about/About';
 import ContactUs from './ui/contact/ContactUs';
+import Estimate from "./ui/estimate/Estimate";
 
 const App = () => {
   const [activeTab, setTab] = useState(0);
@@ -47,24 +48,18 @@ const App = () => {
               <Revolution {...props} setTab={setTab} setIndex={setIndex} />
             )}
           />
-          <Route path="/about" exact
-          render={(props) => (
-              <About
-                {...props}
-                setTab={setTab}
-                setIndex={setIndex}
-              />
-            )}          
-            />
+          <Route
+            path="/about"
+            exact
+            render={(props) => (
+              <About {...props} setTab={setTab} setIndex={setIndex} />
+            )}
+          />
           <Route
             path="/contact-us"
             exact
             render={(props) => (
-              <ContactUs
-                {...props}
-                setTab={setTab}
-                setIndex={setIndex}
-              />
+              <ContactUs {...props} setTab={setTab} setIndex={setIndex} />
             )}
           />
           <Route
@@ -92,7 +87,13 @@ const App = () => {
               />
             )}
           />
-          <Route path="/estimate" exact component={() => <div>Estimate</div>} />
+          <Route
+            path="/estimate"
+            exact
+            render={(props) => (
+              <Estimate {...props} setTab={setTab} setIndex={setIndex} />
+            )}
+          />
         </Switch>
         <Footer
           activeTab={activeTab}
