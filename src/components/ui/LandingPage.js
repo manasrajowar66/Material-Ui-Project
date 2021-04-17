@@ -44,9 +44,7 @@ const useStyles = makeStyles((theme) => ({
     width: 145,
     fontSize: "0.9rem",
   },
-  mainContainer: {
-   
-  },
+  mainContainer: {},
   heroTextContainer: {
     minWidth: "21.5rem",
     marginLeft: "1rem",
@@ -97,32 +95,37 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
-  revolutonBackground:{
-    backgroundImage:`url(${revolutonBackgroundSvg})`,
-    height:'100%',
-    width:'100%',
-    backgroundPosition:'center',
-    backgroundRepeat:'no-repeat',
-    backgroundSize:'cover'
-  },
-  revolutionCard:{
-    position:'absolute',
-    boxShadow:theme.shadows[10],
-    borderRadius:'15px',
-    padding:'10em',
+  revolutonBackground: {
+    backgroundImage: `url(${revolutonBackgroundSvg})`,
+    height: "100%",
+    width: "100%",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed",
     [theme.breakpoints.down('sm')]:{
-      padding:'8em 0 8em 0',
-      borderRadius:0,
-      width:'100%'
+      backgroundAttachment: "inherit",
     }
   },
-  informationBackground:{
-    backgroundImage:`url(${informationBackgroundSvg})`,
-    height:'80em',
-    width:'100%',
-    backgroundPosition:'top',
-    backgroundSize:'cover',
-    backgroundRepeat:'no-repeat',
+  revolutionCard: {
+    position: "absolute",
+    boxShadow: theme.shadows[10],
+    borderRadius: "15px",
+    padding: "10em",
+    [theme.breakpoints.down("sm")]: {
+      padding: "8em 0 8em 0",
+      borderRadius: 0,
+      width: "100%",
+    },
+  },
+  informationBackground: {
+    backgroundImage: `url(${informationBackgroundSvg})`,
+    height: "80em",
+    width: "100%",
+    backgroundPosition: "top",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    
   },
 }));
 
