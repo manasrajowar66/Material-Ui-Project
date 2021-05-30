@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     backgroundColor: theme.palette.common.blue,
-    // minWidth:'250px'
+    // minWidth: "250px",
   },
   drawerEstimateButton: {
     ...theme.typography.estimate,
